@@ -45,12 +45,12 @@
 
     <repositories>
         <repository>
-            <userId>spring-releases</userId>
+            <id>spring-releases</id>
             <name>Spring Releases</name>
             <url>https://repo.spring.io/libs-release</url>
         </repository>
         <repository>
-            <userId>org.jboss.repository.releases</userId>
+            <id>org.jboss.repository.releases</id>
             <name>JBoss Maven Release Repository</name>
             <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
         </repository>
@@ -58,7 +58,7 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <userId>spring-releases</userId>
+            <id>spring-releases</id>
             <name>Spring Releases</name>
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
