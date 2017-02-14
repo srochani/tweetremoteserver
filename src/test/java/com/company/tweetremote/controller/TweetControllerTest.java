@@ -57,7 +57,7 @@ public class TweetControllerTest {
         String userMessageJson = this.json(userMessageDTO);
 
 
-        mockMvc.perform(post("/tweetremoteserver/postmessage")
+        mockMvc.perform(post("/tweetremoteserver/post")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(userMessageJson))
                 .andExpect(status().isOk());

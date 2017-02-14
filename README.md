@@ -24,8 +24,8 @@ java -jar /target/tweetremoteserver-1.0-SNAPSHOT.jar
 ```
 
 End points 
-http://localhost:8765/tweetremoteserver/postmessage
-http://localhost:8765/tweetremoteserver/getmessages
+http://localhost:8765/tweetremoteserver/post
+http://localhost:8765/tweetremoteserver/wall
 http://localhost:8765/tweetremoteserver/following
 http://localhost:8765/tweetremoteserver/timeline
 

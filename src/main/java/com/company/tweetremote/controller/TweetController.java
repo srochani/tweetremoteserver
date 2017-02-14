@@ -25,7 +25,7 @@ public class TweetController {
      * @param userMessage
      * @return
      */
-    @RequestMapping(value="/postmessage", method = RequestMethod.POST)
+    @RequestMapping(value="/post", method = RequestMethod.POST)
     public @ResponseBody
     UserMessage postMessage(@RequestBody UserMessageDTO userMessage ){
         return tweetService.postMessage(userMessage);
@@ -36,7 +36,7 @@ public class TweetController {
      * @param userLogin
      * @return
      */
-    @RequestMapping(value="/getmessages/{userLogin}", method = RequestMethod.GET)
+    @RequestMapping(value="/wall/{userLogin}", method = RequestMethod.GET)
     public @ResponseBody
     List<UserMessage> getMessages(@RequestParam(value="userLogin") String userLogin){
         return tweetService.getMessages(userLogin);
