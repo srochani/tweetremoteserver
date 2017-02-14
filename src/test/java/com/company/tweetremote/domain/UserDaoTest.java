@@ -38,7 +38,7 @@ public class UserDaoTest {
         List<User> actualUsers = userDao.findByUserLogin(user.getUserLogin());
 
         //Assert
-        assertThat(actualUsers).extracting(User::getUserLogin).containsOnly(user.getUserLogin());
+        assertThat(actualUsers).extracting(User::getUserLogin).contains(user.getUserLogin());
 
 
     }

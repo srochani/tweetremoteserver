@@ -52,7 +52,7 @@ public class UserFollowTest {
         //call method
         List<UserFollow> actualFollowUsers = userFollowDao.findByFollowerId(user.getUserId());
 
-        assertThat(actualFollowUsers).extracting(UserFollow::getUserFollowId).containsOnly(user.getUserId());
+        assertThat(actualFollowUsers).extracting(UserFollow::getUserFollowId).contains(user.getUserId());
 
         assertThat(actualFollowUsers).containsExactly(userFollow);
 

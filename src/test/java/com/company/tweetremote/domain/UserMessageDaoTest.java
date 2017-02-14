@@ -47,7 +47,7 @@ public class UserMessageDaoTest {
         List<UserMessage> userMessageList = userMessageDao.findByUser(user);
 
         //assert
-        assertThat(userMessageList).extracting(UserMessage::getMessage).containsOnly(dummyMessage);
+        assertThat(userMessageList).extracting(UserMessage::getMessage).contains(dummyMessage);
 
 
     }
