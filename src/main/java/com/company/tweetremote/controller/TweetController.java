@@ -58,10 +58,10 @@ public class TweetController {
      * @param userLogin
      * @return
      */
-    @RequestMapping(value="/getmessages/{userLogin}", method = RequestMethod.GET)
+    @RequestMapping(value="/timeline/{userLogin}", method = RequestMethod.GET)
     public @ResponseBody
     List<UserMessage> getTimeline(@RequestParam(value="userLogin") String userLogin){
-        return tweetService.getMessages(userLogin);
+        return tweetService.getTimeLine(userLogin);
     }
 
 }
