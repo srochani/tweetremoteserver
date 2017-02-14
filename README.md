@@ -23,3 +23,8 @@ The simplest way to start the application is:
 java -jar /target/tweetremoteserver-1.0-SNAPSHOT.jar
 ```
 
+End points 
+http://localhost:8765/tweetremoteserver/postmessage
+http://localhost:8765/tweetremoteserver/getmessages
+
+

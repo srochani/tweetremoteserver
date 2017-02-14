@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -57,4 +58,22 @@ public class TweetService {
 
         return userMessage;
     }
+
+    /**
+     *
+     * Method to return messages for the user in reverse chronological order
+     * @param userLogin
+     * @return
+     */
+    @Transactional
+    public List<UserMessage> getMessages(String userLogin) {
+        List<UserMessage> userMessages = new ArrayList<>();
+        List<User> userList = userDao.findByUserLogin(userLogin);
+        if(userList != null && !userList.isEmpty()) {
+            userMessages= userMessageDao.findByUserOrderByDateCreatedDesc(userList.get(0));
+        }
+        return userMessages;
+    }
+
+
 }

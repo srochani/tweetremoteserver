@@ -19,7 +19,7 @@ import org.springframework.http.MediaType;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 
 
@@ -62,6 +62,15 @@ public class TweetControllerTest {
                 .content(userMessageJson))
                 .andExpect(status().isOk());
     }
+
+    /*@Test
+    public void getMessages() throws Exception {
+        String userLogin = "TEST_USER";
+
+        mockMvc.perform(get("/tweetremoteserver/getmessages").param("userLogin",userLogin))
+                .andExpect(status().isOk());
+    }*/
+
 
 
     protected String json(Object o) throws IOException {
