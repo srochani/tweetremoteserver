@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -50,6 +51,7 @@ public class TweetService {
         }
 
         userMessage.setMessage(userMessageDTO.getMessage());
+        userMessage.setDateCreated(new Date());
 
         entityManager.persist(userMessage);
 
