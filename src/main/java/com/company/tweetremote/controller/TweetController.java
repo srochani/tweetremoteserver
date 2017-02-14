@@ -42,11 +42,26 @@ public class TweetController {
         return tweetService.getMessages(userLogin);
     }
 
+    /**
+     * End point to set following user
+     * @param userFollowDto
+     * @return
+     */
     @RequestMapping(value="/following", method = RequestMethod.POST)
     public @ResponseBody
     Boolean setFollowing(@RequestBody UserFollowDTO userFollowDto){
         return tweetService.setFollowing(userFollowDto);
     }
 
+    /**
+     * End point to display timeline, following users messages
+     * @param userLogin
+     * @return
+     */
+    @RequestMapping(value="/getmessages/{userLogin}", method = RequestMethod.GET)
+    public @ResponseBody
+    List<UserMessage> getTimeline(@RequestParam(value="userLogin") String userLogin){
+        return tweetService.getMessages(userLogin);
+    }
 
 }

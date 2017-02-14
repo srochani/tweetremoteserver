@@ -13,7 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Sunil on 13/02/2017.
@@ -88,6 +90,55 @@ public class UserMessageDaoTest {
 
         // call method
         List<UserMessage> userMessageList = userMessageDao.findByUserOrderByDateCreatedDesc(user);
+
+        //assert
+        assertThat(userMessageList).extracting(UserMessage::getMessage).contains(dummyMessage1);
+        assertThat(userMessageList).extracting(UserMessage::getMessage).contains(dummyMessage2);
+
+        Assert.assertEquals(dummyMessage2, userMessageList.get(0).getMessage());
+
+    }
+
+    @Test
+    public void findByUserOrderByDateCreatedDescMultipleUsers(){
+
+        String dummyMessage1 = "Test Message 1";
+        String dummyMessage2 = "Test Message 2";
+
+        User followerUser = new User("Alice");
+        entityManager.persist(followerUser);
+
+        //following User
+        User user = new User("Bob");
+        entityManager.persist(user);
+        Date dateCreated = new Date();
+        //UserMessage1
+        UserMessage userMessage1 = new UserMessage();
+        userMessage1.setMessage(dummyMessage1);
+        userMessage1.setDateCreated(dateCreated);
+        userMessage1.setUser(user);
+        entityManager.persist(userMessage1);
+
+        dateCreated = new Date();
+        dateCreated.setTime(dateCreated.getTime() + 100);
+
+        //UserMessage2
+        UserMessage userMessage2 = new UserMessage();
+        userMessage2.setMessage(dummyMessage2);
+        userMessage2.setDateCreated(dateCreated);
+        userMessage2.setUser(user);
+        entityManager.persist(userMessage2);
+
+        UserFollow userFollow = new UserFollow();
+        userFollow.setFollowerId(followerUser.getUserId());
+        userFollow.setFollowUser(user);
+        entityManager.persist(userFollow);
+
+        Set<User> users = new HashSet<>();
+        users.add(user);
+
+        // call method
+        List<UserMessage> userMessageList = userMessageDao.findByUserOrderByDateCreatedDesc(users);
 
         //assert
         assertThat(userMessageList).extracting(UserMessage::getMessage).contains(dummyMessage1);
