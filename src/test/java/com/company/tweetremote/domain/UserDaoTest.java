@@ -3,6 +3,7 @@ package com.company.tweetremote.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import javafx.application.Application;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,25 @@ public class UserDaoTest {
 
         //Assert
         assertThat(actualUsers).extracting(User::getUserLogin).contains(user.getUserLogin());
+
+
+    }
+
+    /**
+     * Test findTop1ByUserLogin method to fetch User by user login
+     */
+    @Test
+    public void testFindTop1ByUserLogin(){
+        //User
+        User user = new User("rob");
+        entityManager.persist(user);
+
+        //call method
+        User actualUser = userDao.findTop1ByUserLogin(user.getUserLogin());
+
+        //Assert
+        Assert.assertNotNull(actualUser);
+        Assert.assertEquals(user.getUserLogin(),actualUser.getUserLogin());
 
 
     }

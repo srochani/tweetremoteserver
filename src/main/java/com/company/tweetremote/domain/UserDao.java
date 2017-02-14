@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface UserDao extends CrudRepository<User,Long> {
     List<User> findByUserLogin(String userLogin);
+
+    User findTop1ByUserLogin(String userLogin);
 }

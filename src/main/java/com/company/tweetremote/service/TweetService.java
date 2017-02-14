@@ -1,9 +1,7 @@
 package com.company.tweetremote.service;
 
-import com.company.tweetremote.domain.User;
-import com.company.tweetremote.domain.UserDao;
-import com.company.tweetremote.domain.UserMessage;
-import com.company.tweetremote.domain.UserMessageDao;
+import com.company.tweetremote.domain.*;
+import com.company.tweetremote.model.UserFollowDTO;
 import com.company.tweetremote.model.UserMessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,6 +24,9 @@ public class TweetService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private UserFollowDao userFollowDao;
 
     @Autowired
     private EntityManager entityManager;
@@ -75,5 +76,21 @@ public class TweetService {
         return userMessages;
     }
 
+
+    @Transactional
+    public Boolean setFollowing(UserFollowDTO userFollowDto){
+        Boolean isSet = false;
+        // check if the users are exists
+        User followerUser = userDao.findTop1ByUserLogin(userFollowDto.getFollowerUserLogin());
+        User followingUser = userDao.findTop1ByUserLogin(userFollowDto.getFollowingUserLogin());
+        if(followerUser != null && followerUser != null) {
+            UserFollow userFollow = new UserFollow();
+            userFollow.setFollowerId(followerUser.getUserId());
+            userFollow.setFollowUser(followingUser);
+            entityManager.persist(userFollow);
+            isSet = true;
+        }
+        return isSet;
+    }
 
 }

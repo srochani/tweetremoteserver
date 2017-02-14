@@ -1,6 +1,7 @@
 package com.company.tweetremote.controller;
 
 import com.company.tweetremote.domain.UserMessage;
+import com.company.tweetremote.model.UserFollowDTO;
 import com.company.tweetremote.model.UserMessageDTO;
 import com.company.tweetremote.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,12 @@ public class TweetController {
     List<UserMessage> getMessages(@RequestParam(value="userLogin") String userLogin){
         return tweetService.getMessages(userLogin);
     }
+
+    @RequestMapping(value="/following", method = RequestMethod.POST)
+    public @ResponseBody
+    Boolean setFollowing(@RequestBody UserFollowDTO userFollowDto){
+        return tweetService.setFollowing(userFollowDto);
+    }
+
+
 }

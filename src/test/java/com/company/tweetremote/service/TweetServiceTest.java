@@ -6,6 +6,7 @@ import com.company.tweetremote.domain.User;
 import com.company.tweetremote.domain.UserDao;
 import com.company.tweetremote.domain.UserMessage;
 import com.company.tweetremote.domain.UserMessageDao;
+import com.company.tweetremote.model.UserFollowDTO;
 import com.company.tweetremote.model.UserMessageDTO;
 import org.junit.Assert;
 import org.junit.Test;
@@ -84,6 +85,26 @@ public class TweetServiceTest {
 
         Assert.assertEquals(dummyMessage2, actualUserMessages.get(0).getMessage());
 
+
+    }
+
+    @Test
+    public void setFollowing(){
+        //User
+        User user1 = new User("Alice");
+        entityManager.persist(user1);
+
+        //User
+        User user2 = new User("Bob");
+        entityManager.persist(user2);
+
+        UserFollowDTO userFollowDTO = new UserFollowDTO();
+        userFollowDTO.setFollowerUserLogin(user1.getUserLogin());
+        userFollowDTO.setFollowingUserLogin(user2.getUserLogin());
+
+        Boolean actucalResult = tweetService.setFollowing(userFollowDTO);
+
+        Assert.assertTrue(actucalResult);
 
     }
 }
